@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guest Feedback Form</title>
+<style>
+  /* Modern, clean styling */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0; background: #f3f7fa;
+    color: #333;
+  }
+  header {
+    background-color: #d4af37; /* gold color */
+    color: white;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  main {
+    max-width: 720px;
+    background: white;
+    margin: 2rem auto 4rem;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+  select, input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  input[type="number"] {
+    width: 100px;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  .radio-group {
+    margin-top: 0.5rem;
+  }
+  .radio-group label {
+    font-weight: normal;
+    margin-right: 1.2rem;
+  }
+  .scale-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+  }
+  .scale-label {
+    font-size: 0.9rem;
+    width: 70px;
+    text-align: center;
+    color: #555;
+  }
+  .facility-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.6rem;
+  }
+  .facility-grid th, .facility-grid td {
+    border: 1px solid #ddd;
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .facility-grid th {
+    background-color: #f0f0f0;
+  }
+  .submit-btn {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 1rem 1.8rem;
+    margin-top: 2rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .submit-btn:hover {
+    background-color: #005fa3;
+  }
+  .lang-toggle {
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+  .lang-toggle button {
+    background: #0078d4;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .lang-toggle button.active {
+    background: #005fa3;
+  }
+  .hidden {
+    display: none;
+  }
+  footer {
+    text-align: center;
+    color: #888;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+  /* Additional overall comments style */
+  #generalCommentsSection {
+    margin-top: 2rem;
+    border-top: 2px solid #d4af37;
+    padding-top: 1.5rem;
+  }
+  #generalCommentsSection label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #d4af37;
+  }
+  #generalCommentsSection textarea {
+    min-height: 80px;
+    font-size: 1rem;
+    border: 2px solid #d4af37;
+  }
+  /* Responsive */
+  @media (max-width: 480px) {
+    .scale-group {
+      display: block;
+    }
+    .scale-label {
+      width: auto;
+      margin-bottom: 0.3rem;
+    }
+    .facility-grid th, .facility-grid td {
+      font-size: 0.75rem;
+      padding: 0.4rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  Guest Feedback Form
+</header>
+
+<main>
+
+  <div class="lang-toggle" aria-label="Language toggle">
+    <button id="btn-en" class="active" type="button">English</button>
+    <button id="btn-id" type="button">Bahasa Indonesia</button>
+  </div>
+
+  <form id="feedbackForm" novalidate>
+
+    <!-- English Section -->
+    <div id="section-en">
+
+      <p>Thank you for choosing Grand Tropic Suites Hotel Jakarta for your stay. We value your feedback and kindly ask you to fill out this form.</p>
+
+      <label for="fullName-en">Full Name: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="text" id="fullName-en" name="fullName" required aria-required="true" />
+
+      <label for="dateStay-en">Date of Stay: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="date" id="dateStay-en" name="dateStay" required aria-required="true" max="" />
+
+      <label for="phone-en">Phone No / Whatsapp: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="text" id="phone-en" name="phone" required aria-required="true" />
+
+      <label for="roomNo-en">Room No: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="text" id="roomNo-en" name="roomNo" required aria-required="true" />
+
+      <label for="lengthStay-en">Length of Stay (in nights): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="number" id="lengthStay-en" name="lengthStay" min="1" max="365" required aria-required="true" />
+
+      <label for="overallSat-en">Overall Satisfaction: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Dissatisfied</div>
+      <div class="scale-group" role="radiogroup" aria-labelledby="overallSat-en-label">
+        <label><input type="radio" name="overallSat" value="1" required />1</label>
+        <label><input type="radio" name="overallSat" value="2" />2</label>
+        <label><input type="radio" name="overallSat" value="3" />3</label>
+        <label><input type="radio" name="overallSat" value="4" />4</label>
+        <label><input type="radio" name="overallSat" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Very Satisfied</div>
+
+      <label for="likelihoodReturn-en">Likelihood of Returning: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Unlikely</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="likelihoodReturn" value="1" required />1</label>
+        <label><input type="radio" name="likelihoodReturn" value="2" />2</label>
+        <label><input type="radio" name="likelihoodReturn" value="3" />3</label>
+        <label><input type="radio" name="likelihoodReturn" value="4" />4</label>
+        <label><input type="radio" name="likelihoodReturn" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Very Likely</div>
+
+      <label>Would you recommend us to others? <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="radio-group" role="radiogroup" aria-label="Would you recommend us to others?">
+        <label><input type="radio" name="recommend" value="Yes" required /> Yes</label>
+        <label><input type="radio" name="recommend" value="No" /> No</label>
+      </div>
+
+      <label for="housekeepingName-en">Housekeeping Staff Name:</label>
+      <input type="text" id="housekeepingName-en" name="housekeepingName" />
+
+      <label for="roomComfort-en">Room Comfort and Cleanliness: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="roomComfort" value="1" required />1</label>
+        <label><input type="radio" name="roomComfort" value="2" />2</label>
+        <label><input type="radio" name="roomComfort" value="3" />3</label>
+        <label><input type="radio" name="roomComfort" value="4" />4</label>
+        <label><input type="radio" name="roomComfort" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="receptionName-en">Reception Staff Name:</label>
+      <input type="text" id="receptionName-en" name="receptionName" />
+
+      <label for="frontDesk-en">Check-In/Check-Out Process: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="frontDesk" value="1" required />1</label>
+        <label><input type="radio" name="frontDesk" value="2" />2</label>
+        <label><input type="radio" name="frontDesk" value="3" />3</label>
+        <label><input type="radio" name="frontDesk" value="4" />4</label>
+        <label><input type="radio" name="frontDesk" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="roomAmenities-en">Room Amenities (TV, Wi-Fi, etc.): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="roomAmenities" value="1" required />1</label>
+        <label><input type="radio" name="roomAmenities" value="2" />2</label>
+        <label><input type="radio" name="roomAmenities" value="3" />3</label>
+        <label><input type="radio" name="roomAmenities" value="4" />4</label>
+        <label><input type="radio" name="roomAmenities" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="roomService-en">Quality of Room Service: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="roomService" value="1" required />1</label>
+        <label><input type="radio" name="roomService" value="2" />2</label>
+        <label><input type="radio" name="roomService" value="3" />3</label>
+        <label><input type="radio" name="roomService" value="4" />4</label>
+        <label><input type="radio" name="roomService" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="leisureFacilities-en">Leisure Facilities (Reflexology, Nail Art, etc.): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="leisureFacilities" value="1" required />1</label>
+        <label><input type="radio" name="leisureFacilities" value="2" />2</label>
+        <label><input type="radio" name="leisureFacilities" value="3" />3</label>
+        <label><input type="radio" name="leisureFacilities" value="4" />4</label>
+        <label><input type="radio" name="leisureFacilities" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="breakfastQuality-en">Breakfast Quality and Variety: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="breakfastQuality" value="1" required />1</label>
+        <label><input type="radio" name="breakfastQuality" value="2" />2</label>
+        <label><input type="radio" name="breakfastQuality" value="3" />3</label>
+        <label><input type="radio" name="breakfastQuality" value="4" />4</label>
+        <label><input type="radio" name="breakfastQuality" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="staffProfessionalism-en">Professionalism and Friendliness of Staff: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="staffProfessionalism" value="1" required />1</label>
+        <label><input type="radio" name="staffProfessionalism" value="2" />2</label>
+        <label><input type="radio" name="staffProfessionalism" value="3" />3</label>
+        <label><input type="radio" name="staffProfessionalism" value="4" />4</label>
+        <label><input type="radio" name="staffProfessionalism" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="staffResponsiveness-en">Responsiveness and Efficiency of Staff: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="staffResponsiveness" value="1" required />1</label>
+        <label><input type="radio" name="staffResponsiveness" value="2" />2</label>
+        <label><input type="radio" name="staffResponsiveness" value="3" />3</label>
+        <label><input type="radio" name="staffResponsiveness" value="4" />4</label>
+        <label><input type="radio" name="staffResponsiveness" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="hotelLocation-en">Convenience of Hotel Location: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="hotelLocation" value="1" required />1</label>
+        <label><input type="radio" name="hotelLocation" value="2" />2</label>
+        <label><input type="radio" name="hotelLocation" value="3" />3</label>
+        <label><input type="radio" name="hotelLocation" value="4" />4</label>
+        <label><input type="radio" name="hotelLocation" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <label for="surroundingArea-en">Surrounding Area (e.g., Attractions, Dining, Shops): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Very Poor</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="surroundingArea" value="1" required />1</label>
+        <label><input type="radio" name="surroundingArea" value="2" />2</label>
+        <label><input type="radio" name="surroundingArea" value="3" />3</label>
+        <label><input type="radio" name="surroundingArea" value="4" />4</label>
+        <label><input type="radio" name="surroundingArea" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Excellent</div>
+
+      <fieldset style="margin-top:1rem;">
+        <legend>Hotel Facilities - Please rate each:</legend>
+        <table class="facility-grid" aria-label="Hotel Facilities">
+          <thead>
+            <tr><th>Facility</th><th>Excellent - Clean and well maintained</th><th>Good - Mostly clean and functional</th><th>Fair - Some issues noticed</th><th>Poor - Needs improvement</th><th>Not Used / No Opinion</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Swimming Pool</td>
+              <td><input type="radio" name="facilitySwimmingPool" value="5" required /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="4" /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="3" /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="2" /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Laundry Service</td>
+              <td><input type="radio" name="facilityLaundry" value="5" required /></td>
+              <td><input type="radio" name="facilityLaundry" value="4" /></td>
+              <td><input type="radio" name="facilityLaundry" value="3" /></td>
+              <td><input type="radio" name="facilityLaundry" value="2" /></td>
+              <td><input type="radio" name="facilityLaundry" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Gym</td>
+              <td><input type="radio" name="facilityGym" value="5" required /></td>
+              <td><input type="radio" name="facilityGym" value="4" /></td>
+              <td><input type="radio" name="facilityGym" value="3" /></td>
+              <td><input type="radio" name="facilityGym" value="2" /></td>
+              <td><input type="radio" name="facilityGym" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Tennis Court</td>
+              <td><input type="radio" name="facilityTennisCourt" value="5" required /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="4" /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="3" /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="2" /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Other Facilities</td>
+              <td><input type="radio" name="facilityOther" value="5" required /></td>
+              <td><input type="radio" name="facilityOther" value="4" /></td>
+              <td><input type="radio" name="facilityOther" value="3" /></td>
+              <td><input type="radio" name="facilityOther" value="2" /></td>
+              <td><input type="radio" name="facilityOther" value="1" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <label for="additionalComments-en" style="margin-top:1rem;">Additional Comments:</label>
+      <textarea id="additionalComments-en" name="additionalComments" rows="4" placeholder="Your comments here..."></textarea>
+
+    </div>
+
+    <!-- Indonesian Section -->
+    <div id="section-id" class="hidden">
+
+      <p>Terima kasih telah memilih Grand Tropic Suites Hotel Jakarta selama menginap. Kami sangat menghargai Ulasan Anda, mohon isi formulir ini.</p>
+
+      <label for="fullName-id">Nama Lengkap: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="text" id="fullName-id" name="fullName" required aria-required="true" />
+
+      <label for="dateStay-id">Tanggal Menginap: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="date" id="dateStay-id" name="dateStay" required aria-required="true" max="" />
+
+      <label for="phone-id">No. Telepon / Whatsapp: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="text" id="phone-id" name="phone" required aria-required="true" />
+
+      <label for="roomNo-id">Nomor Kamar: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="text" id="roomNo-id" name="roomNo" required aria-required="true" />
+
+      <label for="lengthStay-id">Lama Menginap (dalam malam): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <input type="number" id="lengthStay-id" name="lengthStay" min="1" max="365" required aria-required="true" />
+
+      <label for="overallSat-id">Kepuasan Secara Keseluruhan: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Tidak Puas</div>
+      <div class="scale-group" role="radiogroup" aria-labelledby="overallSat-id-label">
+        <label><input type="radio" name="overallSat" value="1" required />1</label>
+        <label><input type="radio" name="overallSat" value="2" />2</label>
+        <label><input type="radio" name="overallSat" value="3" />3</label>
+        <label><input type="radio" name="overallSat" value="4" />4</label>
+        <label><input type="radio" name="overallSat" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Puas</div>
+
+      <label for="likelihoodReturn-id">Kemungkinan Menginap Kembali: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Tidak Mungkin</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="likelihoodReturn" value="1" required />1</label>
+        <label><input type="radio" name="likelihoodReturn" value="2" />2</label>
+        <label><input type="radio" name="likelihoodReturn" value="3" />3</label>
+        <label><input type="radio" name="likelihoodReturn" value="4" />4</label>
+        <label><input type="radio" name="likelihoodReturn" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Mungkin</div>
+
+      <label>Apakah Anda akan merekomendasikan kami ke orang lain? <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="radio-group" role="radiogroup" aria-label="Apakah Anda akan merekomendasikan kami ke orang lain?">
+        <label><input type="radio" name="recommend" value="Ya" required /> Ya</label>
+        <label><input type="radio" name="recommend" value="Tidak" /> Tidak</label>
+      </div>
+
+      <label for="housekeepingName-id">Nama Staf Housekeeping:</label>
+      <input type="text" id="housekeepingName-id" name="housekeepingName" />
+
+      <label for="roomComfort-id">Kenyamanan dan Kebersihan Kamar: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="roomComfort" value="1" required />1</label>
+        <label><input type="radio" name="roomComfort" value="2" />2</label>
+        <label><input type="radio" name="roomComfort" value="3" />3</label>
+        <label><input type="radio" name="roomComfort" value="4" />4</label>
+        <label><input type="radio" name="roomComfort" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="receptionName-id">Nama Staf Resepsionis:</label>
+      <input type="text" id="receptionName-id" name="receptionName" />
+
+      <label for="frontDesk-id">Resepsionis dan Proses Check-In/Check-Out: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="frontDesk" value="1" required />1</label>
+        <label><input type="radio" name="frontDesk" value="2" />2</label>
+        <label><input type="radio" name="frontDesk" value="3" />3</label>
+        <label><input type="radio" name="frontDesk" value="4" />4</label>
+        <label><input type="radio" name="frontDesk" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="roomAmenities-id">Fasilitas Kamar (TV, Wi-Fi, dll.): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="roomAmenities" value="1" required />1</label>
+        <label><input type="radio" name="roomAmenities" value="2" />2</label>
+        <label><input type="radio" name="roomAmenities" value="3" />3</label>
+        <label><input type="radio" name="roomAmenities" value="4" />4</label>
+        <label><input type="radio" name="roomAmenities" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="roomService-id">Kualitas Layanan Kamar: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="roomService" value="1" required />1</label>
+        <label><input type="radio" name="roomService" value="2" />2</label>
+        <label><input type="radio" name="roomService" value="3" />3</label>
+        <label><input type="radio" name="roomService" value="4" />4</label>
+        <label><input type="radio" name="roomService" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="leisureFacilities-id">Fasilitas Hiburan (Refleksi, Nail Art, dll.): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="leisureFacilities" value="1" required />1</label>
+        <label><input type="radio" name="leisureFacilities" value="2" />2</label>
+        <label><input type="radio" name="leisureFacilities" value="3" />3</label>
+        <label><input type="radio" name="leisureFacilities" value="4" />4</label>
+        <label><input type="radio" name="leisureFacilities" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="breakfastQuality-id">Kualitas dan Variasi Sarapan: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="breakfastQuality" value="1" required />1</label>
+        <label><input type="radio" name="breakfastQuality" value="2" />2</label>
+        <label><input type="radio" name="breakfastQuality" value="3" />3</label>
+        <label><input type="radio" name="breakfastQuality" value="4" />4</label>
+        <label><input type="radio" name="breakfastQuality" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="staffProfessionalism-id">Profesionalisme dan Keramahan Staf: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="staffProfessionalism" value="1" required />1</label>
+        <label><input type="radio" name="staffProfessionalism" value="2" />2</label>
+        <label><input type="radio" name="staffProfessionalism" value="3" />3</label>
+        <label><input type="radio" name="staffProfessionalism" value="4" />4</label>
+        <label><input type="radio" name="staffProfessionalism" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="staffResponsiveness-id">Responsif dan Efisiensi Staf: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="staffResponsiveness" value="1" required />1</label>
+        <label><input type="radio" name="staffResponsiveness" value="2" />2</label>
+        <label><input type="radio" name="staffResponsiveness" value="3" />3</label>
+        <label><input type="radio" name="staffResponsiveness" value="4" />4</label>
+        <label><input type="radio" name="staffResponsiveness" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="hotelLocation-id">Lokasi Hotel yang Strategis: <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="hotelLocation" value="1" required />1</label>
+        <label><input type="radio" name="hotelLocation" value="2" />2</label>
+        <label><input type="radio" name="hotelLocation" value="3" />3</label>
+        <label><input type="radio" name="hotelLocation" value="4" />4</label>
+        <label><input type="radio" name="hotelLocation" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <label for="surroundingArea-id">Lingkungan Sekitar (Wisata, Kuliner, Toko, dll.): <span aria-hidden="true" style="color:#d00;">*</span></label>
+      <div class="scale-label">Sangat Buruk</div>
+      <div class="scale-group" role="radiogroup">
+        <label><input type="radio" name="surroundingArea" value="1" required />1</label>
+        <label><input type="radio" name="surroundingArea" value="2" />2</label>
+        <label><input type="radio" name="surroundingArea" value="3" />3</label>
+        <label><input type="radio" name="surroundingArea" value="4" />4</label>
+        <label><input type="radio" name="surroundingArea" value="5" />5</label>
+      </div>
+      <div class="scale-label" style="text-align:right;">Sangat Baik</div>
+
+      <fieldset style="margin-top:1rem;">
+        <legend>Fasilitas Hotel - Silakan nilai setiap fasilitas:</legend>
+        <table class="facility-grid" aria-label="Fasilitas Hotel">
+          <thead>
+            <tr><th>Fasilitas</th><th>Sangat Baik - Bersih dan terawat</th><th>Baik - Sebagian besar bersih dan berfungsi</th><th>Cukup - Ada beberapa masalah</th><th>Buruk - Perlu perbaikan</th><th>Tidak Dipakai / Tidak Ada Pendapat</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kolam Renang</td>
+              <td><input type="radio" name="facilitySwimmingPool" value="5" required /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="4" /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="3" /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="2" /></td>
+              <td><input type="radio" name="facilitySwimmingPool" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Laundry Service</td>
+              <td><input type="radio" name="facilityLaundry" value="5" required /></td>
+              <td><input type="radio" name="facilityLaundry" value="4" /></td>
+              <td><input type="radio" name="facilityLaundry" value="3" /></td>
+              <td><input type="radio" name="facilityLaundry" value="2" /></td>
+              <td><input type="radio" name="facilityLaundry" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Gym</td>
+              <td><input type="radio" name="facilityGym" value="5" required /></td>
+              <td><input type="radio" name="facilityGym" value="4" /></td>
+              <td><input type="radio" name="facilityGym" value="3" /></td>
+              <td><input type="radio" name="facilityGym" value="2" /></td>
+              <td><input type="radio" name="facilityGym" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Lapangan Tenis</td>
+              <td><input type="radio" name="facilityTennisCourt" value="5" required /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="4" /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="3" /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="2" /></td>
+              <td><input type="radio" name="facilityTennisCourt" value="1" /></td>
+            </tr>
+            <tr>
+              <td>Fasilitas Lainnya</td>
+              <td><input type="radio" name="facilityOther" value="5" required /></td>
+              <td><input type="radio" name="facilityOther" value="4" /></td>
+              <td><input type="radio" name="facilityOther" value="3" /></td>
+              <td><input type="radio" name="facilityOther" value="2" /></td>
+              <td><input type="radio" name="facilityOther" value="1" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <label for="additionalComments-id" style="margin-top:1rem;">Komentar Tambahan:</label>
+      <textarea id="additionalComments-id" name="additionalComments" rows="4" placeholder="Tulis komentar Anda..."></textarea>
+
+    </div>
+
+    <!-- Additional overall comments section below both language sections -->
+    <div id="generalCommentsSection">
+      <label for="generalComments">Additional Overall Comments / Komentar Tambahan Keseluruhan:</label>
+      <textarea id="generalComments" name="generalComments" placeholder="You can add any other comments here... / Anda dapat menambahkan komentar lain di sini..." rows="5"></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit / Kirim</button>
+
+  </form>
+
+  <div id="formMessage" role="alert" style="margin-top:1.5rem; color: green; font-weight:600;"></div>
+</main>
+
+<footer>
+  &copy; 2024 Grand Tropic Suites Hotel Jakarta
+</footer>
+
+<script>
+  (function(){
+    const enSection = document.getElementById('section-en');
+    const idSection = document.getElementById('section-id');
+    const btnEn = document.getElementById('btn-en');
+    const btnId = document.getElementById('btn-id');
+    const form = document.getElementById('feedbackForm');
+    const formMessage = document.getElementById('formMessage');
+
+    // Set max date today for date inputs
+    const setMaxDate = () => {
+      const todayStr = new Date().toISOString().split('T')[0];
+      document.getElementById('dateStay-en').setAttribute('max', todayStr);
+      document.getElementById('dateStay-id').setAttribute('max', todayStr);
+    };
+    setMaxDate();
+
+    // Language toggle handlers
+    btnEn.addEventListener('click', () => {
+      btnEn.classList.add('active');
+      btnId.classList.remove('active');
+      enSection.classList.remove('hidden');
+      idSection.classList.add('hidden');
+      formMessage.textContent = '';
+    });
+    btnId.addEventListener('click', () => {
+      btnId.classList.add('active');
+      btnEn.classList.remove('active');
+      idSection.classList.remove('hidden');
+      enSection.classList.add('hidden');
+      formMessage.textContent = '';
+    });
+
+    // Form submission handler
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formMessage.style.color = 'green';
+
+      // Simple validation by HTML5 form required attributes and radio grouping validity
+      if (!form.checkValidity()) {
+        formMessage.style.color = 'red';
+        formMessage.textContent = 'Please fill all required fields and select all required options / Mohon isi semua bidang yang wajib.';
+        return;
+      }
+
+      // Collect all form data
+      const data = {};
+      const formData = new FormData(form);
+      for (const [key, value] of formData.entries()) {
+        data[key] = value;
+      }
+
+      // For demonstration, just show the JSON data below form and reset
+      formMessage.textContent = 'Thank you for your feedback! / Terima kasih atas umpan balik Anda!';
+      console.log('Form data submitted:', data);
+
+      // Reset form if desired
+      form.reset();
+    });
+  })();
+</script>
+
+</body>
+</html>
+
